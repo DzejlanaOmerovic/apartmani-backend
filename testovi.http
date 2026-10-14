@@ -1,0 +1,31 @@
+### 1. Prijava admina – iz odgovora kopiraj token
+POST http://127.0.0.1:8000/api/prijava
+Accept: application/json
+Content-Type: application/json
+
+{ "Email": "admin@apartmani.rs", "Lozinka": "admin123" }
+
+### 2. Spisak korisnika (admin)
+GET http://127.0.0.1:8000/api/korisnici
+Accept: application/json
+Authorization: Bearer 1|iczw1nawISWPttoWIqBw6vm7b7MV8e7sBOiSfq6Bea0b41d2
+
+### 3. Admin dodaje zaposlenu Anu
+POST http://127.0.0.1:8000/api/korisnici
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 1|iczw1nawISWPttoWIqBw6vm7b7MV8e7sBOiSfq6Bea0b41d2
+
+{ "Ime": "Ana", "Prezime": "Anić", "Email": "ana@apartmani.rs", "Lozinka": "ana12345", "Uloga": "zaposleni" }
+
+### 4. Vlasnik Marko se sam registruje – iz odgovora kopiraj njegov token
+POST http://127.0.0.1:8000/api/registracija
+Accept: application/json
+Content-Type: application/json
+
+{ "Uloga": "vlasnik", "Ime": "Marko", "Prezime": "Marković", "Email": "marko@apartmani.rs", "Lozinka": "marko123" }
+
+### 5. Provera uloge: Marko (vlasnik) pokušava u admin deo – mora biti ODBIJEN
+GET http://127.0.0.1:8000/api/korisnici
+Accept: application/json
+Authorization: Bearer OVDE_MARKOV_TOKEN
